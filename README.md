@@ -1,77 +1,80 @@
 # bid-scrape
-Scrapes Active Places and counts the number of sites (indoor/outdoor/all) and subtypes (cricket, golf, hockey etc) for one local authority
 
-How to use the program: https://docs.google.com/document/d/1krlJj0UqE7m57763JXM3bg2WlOckMSBd/
+Scrapes Active Places and counts the number of sites (indoor/outdoor/all) and subtypes (cricket, golf, hockey, etc.) for one local authority.
 
-Walkthrough including code: https://docs.google.com/document/d/1l8BzNyWgjcPFnrZ8UMlxeIPSnJaoq-mA/
+How to use the program: [Instructions Document](https://docs.google.com/document/d/1krlJj0UqE7m57763JXM3bg2WlOckMSBd/)  
+Walkthrough including code: [Walkthrough Document](https://docs.google.com/document/d/1l8BzNyWgjcPFnrZ8UMlxeIPSnJaoq-mA/)
 
-*Libraries Used*
+---
 
-    • pandas: For data manipulation and analysis.   
-    • os: To interact with the file system and identify the latest CSV file.
+## Libraries Used
 
-*Step-by-Step Functionality*
+- **pandas**: For data manipulation and analysis.  
+- **os**: To interact with the file system and identify the latest CSV file.
 
-1. Identify the Latest Active Places CSV File<br>
-    • The script scans the current directory for CSV files ending with active_places.csv.<br>
-    • It selects the most recently modified file as the input dataset.<br>
-    • If no such file is found, the script raises an error.
+---
 
-2. Extract the Base Name from the File<br>
-    • The script extracts the portion of the filename before active_places to use as a prefix for output files.
+## Step-by-Step Functionality
 
-3. Load and Filter Data<br>
-    • The CSV file is loaded into a pandas DataFrame.<br>
-    • Rows where Operational Status is "No Grass Pitches Currently Marked Out" are removed.<br>
-    • Only the following columns are retained:<br>
-        o Site Name<br>
-        o Facility Type<br>
-        o Facility Subtype<br>
-        o Unit<br>
-        o Number<br>
-        o Management Type (Text)
+1. **Identify the Latest Active Places CSV File**  
+   - The script scans the current directory for CSV files ending with `active_places.csv`.  
+   - It selects the most recently modified file as the input dataset.  
+   - If no such file is found, the script raises an error.
 
-4. Categorize Facility Type<br>
-    • A new column Type/Subtype is created:<br>
-        o If Facility Type is Grass Pitches or Golf, it retains Facility Subtype.<br>
-        o Otherwise, it retains Facility Type.
+2. **Extract the Base Name from the File**  
+   - The script extracts the portion of the filename before `active_places` to use as a prefix for output files.
 
-5. Classify Facilities as Indoor or Outdoor<br>
-    • A predefined list of indoor and outdoor facility types is used.<br>
-    • The script adds a new column Indoor/Outdoor based on these lists.
+3. **Load and Filter Data**  
+   - The CSV file is loaded into a pandas DataFrame.  
+   - Rows where `Operational Status` is "No Grass Pitches Currently Marked Out" are removed.  
+   - Only the following columns are retained:  
+     - Site Name  
+     - Facility Type  
+     - Facility Subtype  
+     - Unit  
+     - Number  
+     - Management Type (Text)
 
-6. Standardize Units<br>
-    • The script maps certain unit names to standardized terms in a new column New Units.
+4. **Categorize Facility Type**  
+   - A new column `Type/Subtype` is created:  
+     - If `Facility Type` is Grass Pitches or Golf, it retains `Facility Subtype`.  
+     - Otherwise, it retains `Facility Type`.
 
-7. Adjust Facility Numbers<br>
-    • Some facility types (e.g., fitness studios, ski slopes, ice rinks) are assigned a default New Number of 1.<br>
-    • Otherwise, New Number retains its original value
+5. **Classify Facilities as Indoor or Outdoor**  
+   - A predefined list of indoor and outdoor facility types is used.  
+   - The script adds a new column `Indoor/Outdoor` based on these lists.
 
-8. Standardize Facility Names<br>
-    • The script applies predefined mappings to create a New Type/Subtype column with consistent naming conventions.
+6. **Standardize Units**  
+   - The script maps certain unit names to standardized terms in a new column `New Units`.
 
-*Data Summarization and Output Generation*
+7. **Adjust Facility Numbers**  
+   - Some facility types (e.g., fitness studios, ski slopes, ice rinks) are assigned a default `New Number` of 1.  
+   - Otherwise, `New Number` retains its original value.
 
-9. Summarizing Facilities by Category<br>
-    • The script filters data separately for indoor and outdoor facilities.<br>
-    • It creates summary tables listing each facility type along with:<br>
-        o Number of unique sites<br>
-        o Total count of facilities<br>
-        o Standardized unit type
+8. **Standardize Facility Names**  
+   - The script applies predefined mappings to create a `New Type/Subtype` column with consistent naming conventions.
 
-10. Unique Site Counts<br>
-    • The script calculates:<br>
-        o The total number of unique sites.<br>
-        o The count of outdoor and indoor sites separately.<br>
-        o The count of educational sites for each category.
+---
 
-11. Generate an Excel File<br>
-    • The processed data is written to an Excel file named <base_name> Bid Scrape.xlsx.<br>
-    • The file contains the following sheets:<br>
-        o Unique site counts: Summary of unique site statistics.<br>
-        o Outdoor: Summary of outdoor facility data.<br>
-        o Indoor: Summary of indoor facility data.<br>
-    • Each DataFrame is written without index columns for clarity.
+## Data Summarization and Output Generation
 
+9. **Summarizing Facilities by Category**  
+   - The script filters data separately for indoor and outdoor facilities.  
+   - It creates summary tables listing each facility type along with:  
+     - Number of unique sites  
+     - Total count of facilities  
+     - Standardized unit type
 
+10. **Unique Site Counts**  
+    - The script calculates:  
+      - The total number of unique sites  
+      - The count of outdoor and indoor sites separately  
+      - The count of educational sites for each category
 
+11. **Generate an Excel File**  
+    - The processed data is written to an Excel file named `<base_name> Bid Scrape.xlsx`.  
+    - The file contains the following sheets:  
+      - `Unique site counts`: Summary of unique site statistics  
+      - `Outdoor`: Summary of outdoor facility data  
+      - `Indoor`: Summary of indoor facility data  
+    - Each DataFrame is written without index columns for clarity
