@@ -1,3 +1,6 @@
+# bid-scrape
+Scrapes Active Places and counts the number of sites (indoor/outdoor/all) and subtypes (cricket, golf, hockey etc) for one local authority
+
 How to use the program: https://docs.google.com/document/d/1krlJj0UqE7m57763JXM3bg2WlOckMSBd/
 
 Walkthrough including code: https://docs.google.com/document/d/1l8BzNyWgjcPFnrZ8UMlxeIPSnJaoq-mA/
