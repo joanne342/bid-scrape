@@ -2,9 +2,9 @@ How to use the program: https://docs.google.com/document/d/1krlJj0UqE7m57763JXM3
 
 Walkthrough including code: https://docs.google.com/document/d/1l8BzNyWgjcPFnrZ8UMlxeIPSnJaoq-mA/
 
-*Libraries Used*<br>
+*Libraries Used*
 
-    • pandas: For data manipulation and analysis.<br>
+    • pandas: For data manipulation and analysis.<bbr>    
     • os: To interact with the file system and identify the latest CSV file.
 
 *Step-by-Step Functionality*
