@@ -4,7 +4,7 @@ Walkthrough including code: https://docs.google.com/document/d/1l8BzNyWgjcPFnrZ8
 
 *Libraries Used*
 
-    • pandas: For data manipulation and analysis.<bbr>    
+    • pandas: For data manipulation and analysis.   
     • os: To interact with the file system and identify the latest CSV file.
 
 *Step-by-Step Functionality*
